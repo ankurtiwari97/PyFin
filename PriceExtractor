@@ -1,0 +1,18 @@
+import yfinance as yf
+
+# Function to calculate average
+def calculate_average(prices):
+    total = sum(prices)
+    return total / len(prices)
+
+# Prompt the user for a ticker symbol
+ticker_symbol = input("Enter the ticker symbol: ")
+
+# Fetch historical data for the past 100 days
+ticker = yf.Ticker(ticker_symbol)
+history = ticker.history(period="100d")
+prices = history["Close"].tolist()
+
+# Calculate the average trading price
+average_price = calculate_average(prices)
+print(f"The average trading price of {ticker_symbol} for the past 100 days is: {average_price:.2f}")
